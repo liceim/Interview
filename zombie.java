@@ -1,6 +1,14 @@
 //Time complexity: O(r * c).
 //Space cmplexity: O(r * c).
-//BFS
+/*
+Its a variant of Breadth first search, where I am storing all the cell position where value is 1 and adding it to a
+queue. Then dequeing items from this queue and changing all its valid neighbours(having value 0) to 1 and
+enqueuing back to queue. so this process will continue tillthere are no elements in queue(means no more 0's
+are present in the matrix) To track the number of hours it is taking to convert all the 0's to 1's, after
+processing every level for queue, Iam increasing the hours by 1.
+Whatis the run time complexity of your solution for this code question.
+In all case it willtake O(m*n) time to convert allthe 0s to 1, as it has to check every cell item at least once.
+*/
 
 class Solution {
   public static void main(String[] args) {
@@ -16,19 +24,19 @@ class Solution {
       System.out.println(minHours(gg));
   }
 
-  private static final int ZOMBIE = 1;
+  private static final int FILL = 1;
   private static final int[][] DIRS = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
   public static int minHours((int rows, int columns, List<List<Integer>> grid) {
-      if (grid == 0 || grid.length == 0 || grid[0].length == 0) {
+      if (grid == 0 || grid.length == 0 || grid[0].length == 0 || rows != grid.length || columns != grid[0].length) {
           return 0;          
       }
-      
+          
       int count = 0;
       Queue<Point> queue = new ArrayDeque<>();
       for (int r = 0; r < rows; r++) {
           for (int c = 0; c < columns; c++) {
-              if (grid.get(r).get(c) == ZOMBIE) {
+              if (grid.get(r).get(c) == FILL) {
                   queue.offer(new Point(r, c));
                   count++;
               }
@@ -42,15 +50,15 @@ class Solution {
               return steps;
           }
           for (int i = 0; i < size; ++i) {
-              Point zombie = queue.poll();
+              Point server = queue.poll();
 
               for (int[] dir : DIRS) {
-                  int r = zombie.r + dir[0];
-                  int c = zombie.c + dir[1];
+                  int r = server.r + dir[0];
+                  int c = server.c + dir[1];
 
                   if (isHuman(grid, r, c)) {
                       count++;
-                      grid.get(r).set(c, ZOMBIE);
+                      grid.get(r).set(c, FILL);
                       queue.offer(new Point(r, c));
                   }
               }
@@ -60,8 +68,8 @@ class Solution {
       return -1;
   }
 
-  private static boolean isHuman(List<List<Integer>> grid, int r, int c) {
-      return r >= 0 && r < grid.size() &&c >= 0 && c < grid.get(0).size() && grid.get(r).get(c) != ZOMBIE;
+  private static boolean isFill(List<List<Integer>> grid, int r, int c) {
+      return r >= 0 && r < grid.size() &&c >= 0 && c < grid.get(0).size() && grid.get(r).get(c) != FILL;
   }
 
   private static class Point {
