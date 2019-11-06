@@ -1,3 +1,13 @@
+/*
+It was basic DFS approch used to solve the question, where we are loopingover all the indices and if the value
+of any cell(i,j) is 1, then we are finding allthe 1's we can reach from that cell, once we cannot find any more 1's
+connected to it, we will move on to find another 1 . I was avoiding extra memory which might have been used
+to track already visited 1's by changing its value to 0, once its visited
+Whatis the run time complexity of your solution for this code question.
+Its traversing each cell atmost once in worst case, so the time complexity is O(m*n) where m*n is total cells in
+matrix
+
+*/
 public int numIslands(char[][] grid) {
     int count=0;
     for(int i=0;i<grid.length;i++)
