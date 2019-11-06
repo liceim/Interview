@@ -20,6 +20,9 @@ class Solution {
   private static final int[][] DIRS = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
   public static int minHours(List<List<Integer>> grid) {
+      if (grid == 0 || grid.length == 0 || grid[0].length == 0) {
+          return 0;          
+      }
       int people = 0;
       int ans = 0;
       Queue<Point> queue = new ArrayDeque<>();
