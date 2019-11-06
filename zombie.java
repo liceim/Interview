@@ -1,3 +1,7 @@
+//Time complexity: O(r * c).
+//Space cmplexity: O(r * c).
+//BFS
+
 class Solution {
   public static void main(String[] args) {
       int[][] grid = { { 0, 0, 1, 0, 1 }, { 0, 1, 0, 1, 0 }, { 0, 0, 0, 0, 1 }, { 0, 0, 0, 0, 0 } };
