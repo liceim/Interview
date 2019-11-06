@@ -10,15 +10,15 @@ import java.util.*;
 
 class Solution {
   public static void main(String[] args) {
-    int numCompetitors = 6;
-        int topNCompetitors = 2;
-        String[] competitors = {"newshop", "shopnow","fashionbeats","mymarket","tcellular"};
-        int numReviews = 6;
-        String[] reviews = {"newshop is providing good services in the city; everyone should use newshop", "best services by newsshop", "fashionbeats has great services int the city","i am proud to have fashionbeats","mymarket has awesome services","Thanks Newshop for the quick delivery."};
+      int numCompetitors = 6;
+      int topNCompetitors = 2;
+      String[] competitors = {"newshop", "shopnow","fashionbeats","mymarket","tcellular"};
+      int numReviews = 6;
+      String[] reviews = {"newshop is providing good services in the city; everyone should use newshop", "best services by newsshop", "fashionbeats has great services int the city","i am proud to have fashionbeats","mymarket has awesome services","Thanks Newshop for the quick delivery."};
         
-        List<String> result = getTopCompetitors(numCompetitors, topNCompetitors, competitors, numReviews, reviews);
+      List<String> result = getTopCompetitors(numCompetitors, topNCompetitors, competitors, numReviews, reviews);
         
-        System.out.println(result);
+      System.out.println(result);
   }
   
   public static List<String> getTopCompetitors(int numCompetitors, int topNCompetitors, String[] competitors, int numReviews, String[] reviews) {
