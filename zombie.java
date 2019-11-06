@@ -19,28 +19,28 @@ class Solution {
   private static final int ZOMBIE = 1;
   private static final int[][] DIRS = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
-  public static int minHours(List<List<Integer>> grid) {
+  public static int minHours((int rows, int columns, List<List<Integer>> grid) {
       if (grid == 0 || grid.length == 0 || grid[0].length == 0) {
           return 0;          
       }
-      int people = 0;
-      int ans = 0;
+      
+      int count = 0;
       Queue<Point> queue = new ArrayDeque<>();
-      for (int r = 0; r < grid.size(); r++) {
-          for (int c = 0; c < grid.get(0).size(); c++) {
+      for (int r = 0; r < rows; r++) {
+          for (int c = 0; c < columns; c++) {
               if (grid.get(r).get(c) == ZOMBIE) {
                   queue.offer(new Point(r, c));
-              } else {
-                  people++;
+                  count++;
               }
           }
       }
-
-      if (people == 0) return ans;
-      
-      ans++;
+    
+      int steps = 0;
       while (!queue.isEmpty()) {
           int size = queue.size();
+          if (count == rows * columns) {
+              return steps;
+          }
           for (int i = 0; i < size; ++i) {
               Point zombie = queue.poll();
 
@@ -49,14 +49,13 @@ class Solution {
                   int c = zombie.c + dir[1];
 
                   if (isHuman(grid, r, c)) {
-                      people--;
-                      if (people == 0) return ans;
+                      count++;
                       grid.get(r).set(c, ZOMBIE);
                       queue.offer(new Point(r, c));
                   }
               }
           }
-          ans++;
+          steps++;
       }
       return -1;
   }
