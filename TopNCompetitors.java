@@ -7,6 +7,8 @@ import java.util.*;
  *
  * If you need more classes, simply define them inline.
  */
+// Use HashMap to record key and its counts, use Bucket sort all key to get top Key
+// Time complexity is O(n) n is review numbers.
 
 class Solution {
   public static void main(String[] args) {
