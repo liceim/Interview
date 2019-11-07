@@ -1,6 +1,8 @@
-//Basically, it uses dfs to travel through the graph to find if current vertex u, can travel back to u or previous vertex
-//low[u] records the lowest vertex u can reach
-//disc[u] records the time when u was discovered
+/*
+This problem is intend to find the crtical points in a graph. So I think it could be solved by Tarjan algorithm.
+And Tarjan algorithm will find the critical edges. So after find the critical edges, both of the points could be
+criticle points. Inoticed the point is critical point have and only have more than one adjacent nodes.
+*/
 
 //The Time complexity is O(graph) + O(DFS) = O(|E| + |V|) + O(|E| + |V|) = O(|E| + |V|)
 private List<Integer>[] adj;
