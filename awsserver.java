@@ -21,15 +21,21 @@ class Solution {
           }
           gg.add(list);
       }
-      System.out.println(minHours(gg));
+      System.out.println(minHours(4, 5, gg));
   }
 
   private static final int FILL = 1;
   private static final int[][] DIRS = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
-  public static int minHours((int rows, int columns, List<List<Integer>> grid) {
-      if (grid == 0 || grid.length == 0 || grid[0].length == 0 || rows != grid.length || columns != grid[0].length) {
+  public static int minHours(int rows, int columns, List<List<Integer>> grid) {
+      if (grid == null) {
           return 0;          
+      }
+    
+      int m = grid.size(), n = grid.get(0).size();
+    
+      if (m == 0 || n == 0 || rows != m || columns != n) {
+          return 0;
       }
           
       int count = 0;
@@ -56,7 +62,7 @@ class Solution {
                   int r = server.r + dir[0];
                   int c = server.c + dir[1];
 
-                  if (isHuman(grid, r, c)) {
+                  if (isFill(grid, r, c)) {
                       count++;
                       grid.get(r).set(c, FILL);
                       queue.offer(new Point(r, c));
