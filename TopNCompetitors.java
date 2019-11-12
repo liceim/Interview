@@ -38,6 +38,7 @@ class Solution {
             for (String word : words) {
                 if (keySet.contains(word) && !used.contains(word)) {
                     map.put(word, map.getOrDefault(word, 0) + 1);
+                    used.add(word);
                 }
             }
         }
