@@ -79,7 +79,7 @@ class Solution {
           }
           steps++;
       }
-      return -1;
+      return 0;
   }
 
   private static boolean isFill(List<List<Integer>> grid, int r, int c) {
