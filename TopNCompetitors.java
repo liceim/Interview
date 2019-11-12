@@ -23,17 +23,17 @@ class Solution {
       System.out.println(result);
   }
   
-  public static List<String> getTopCompetitors(int numCompetitors, int topNCompetitors, String[] competitors, int numReviews, String[] reviews) {
+  public static ArrayList<String> getTopCompetitors(int numToys, int topToys, List<> toys, int numQuotes, List<> quotes) {
         Map<String, Integer> map = new HashMap<>();
         Set<String> keySet = new HashSet<>();
-        List<String>[] bucket = new List[competitors.length + 1];
+        List<String>[] bucket = new List[quotes.size() + 1];
         
-        for (int i = 0; i < competitors.length; ++i) {
-            keySet.add(competitors[i].toLowerCase());
+        for (int i = 0; i < toys.size(); ++i) {
+            keySet.add(toys.get(i).toLowerCase());
         }
         
-        for (String review : reviews) {
-            String[] words = review.toLowerCase().split(" ");
+        for (String quote : quotess) {
+            String[] words = quote.toLowerCase().split(" ");
             Set<String> used = new HashSet<>();
             for (String word : words) {
                 if (keySet.contains(word) && !used.contains(word)) {
@@ -52,7 +52,7 @@ class Solution {
         }
         
         List<String> result = new ArrayList<>();
-        int k = topNCompetitors;
+        int k = topToys;
         for (int i = bucket.length - 1; i > 0 && k > 0; --i) {
             if (bucket[i] != null) {
                 List<String> list = bucket[i];
