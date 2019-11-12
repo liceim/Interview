@@ -17,13 +17,17 @@ class Solution {
       String[] competitors = {"newshop", "shopnow","fashionbeats","mymarket","tcellular"};
       int numReviews = 6;
       String[] reviews = {"newshop is providing good services in the city; everyone should use newshop", "best services by newsshop", "fashionbeats has great services int the city","i am proud to have fashionbeats","mymarket has awesome services","Thanks Newshop for the quick delivery."};
-        
-      List<String> result = getTopCompetitors(numCompetitors, topNCompetitors, competitors, numReviews, reviews);
+      
+      List<String> toys = new ArrayList<>();
+      Collections.addAll(toys, competitors);
+      List<String> quotes = new ArrayList<>();
+      Collections.addAll(quotes, reviews);
+      List<String> result = getTopCompetitors(numCompetitors, topNCompetitors, toys, numReviews, quotes);
         
       System.out.println(result);
   }
   
-  public static ArrayList<String> getTopCompetitors(int numToys, int topToys, List<> toys, int numQuotes, List<> quotes) {
+  public static ArrayList<String> getTopCompetitors(int numToys, int topToys, List<String> toys, int numQuotes, List<String> quotes) {
         Map<String, Integer> map = new HashMap<>();
         Set<String> keySet = new HashSet<>();
         List<String>[] bucket = new List[quotes.size() + 1];
@@ -32,7 +36,7 @@ class Solution {
             keySet.add(toys.get(i).toLowerCase());
         }
         
-        for (String quote : quotess) {
+        for (String quote : quotes) {
             String[] words = quote.toLowerCase().split(" ");
             Set<String> used = new HashSet<>();
             for (String word : words) {
@@ -51,7 +55,7 @@ class Solution {
             bucket[freq].add(key);
         }
         
-        List<String> result = new ArrayList<>();
+        ArrayList<String> result = new ArrayList<>();
         int k = topToys;
         for (int i = bucket.length - 1; i > 0 && k > 0; --i) {
             if (bucket[i] != null) {
@@ -65,30 +69,5 @@ class Solution {
         }
         
         return result;
-        /*
-        PriorityQueue<Map.Entry<String, Integer>> minHeap = new PriorityQueue<>((a, b) -> (a.getValue() == b.getValue() ? b.getKey().compareTo(a.getKey()) : a.getValue() - b.getValue()));
-        
-        for (Map.Entry entry : map.entrySet()) {
-            minHeap.offer(entry);
-            if (minHeap.size() > topNCompetitors) {
-                minHeap.poll();
-            }
-        }
-                                                                                
-        String[] res = new String[topNCompetitors];
-        for (int i = topNCompetitors - 1; i >= 0 && !minHeap.isEmpty(); --i) {
-            Map.Entry<String, Integer> entry = minHeap.poll();
-            res[i] = entry.getKey();
-        }                           
-        
-        List<String> result = new ArrayList<>();
-        for (String key : res) {
-            if(key != null) {
-                result.add(key);
-            }
-        }
-        
-        return result;    
-        */
     }
 }
