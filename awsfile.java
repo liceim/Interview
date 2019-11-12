@@ -48,8 +48,8 @@ class Solution {
           
       int count = 0;
       Queue<Point> queue = new LinkedList<>();
-      for (int r = 0; r < rows; r++) {
-          for (int c = 0; c < columns; c++) {
+      for (int r = 0; r < m; ++r) {
+          for (int c = 0; c < n; ++c) {
               if (grid.get(r).get(c) == FILL) {
                   queue.offer(new Point(r, c));
                   count++;
