@@ -10,6 +10,14 @@ Whatis the run time complexity of your solution for this code question.
 In all case it willtake O(m*n) time to convert allthe 0s to 1, as it has to check every cell item at least once.
 */
 
+class Point {
+      int r, c;
+      Point(int r, int c) {
+          this.r = r;
+          this.c = c;
+      }
+}
+
 class Solution {
   public static void main(String[] args) {
       int[][] grid = { { 0, 0, 1, 0, 1 }, { 0, 1, 0, 1, 0 }, { 0, 0, 0, 0, 1 }, { 0, 0, 0, 0, 0 } };
@@ -39,7 +47,7 @@ class Solution {
       }
           
       int count = 0;
-      Queue<Point> queue = new ArrayDeque<>();
+      Queue<Point> queue = new LinkedList<>();
       for (int r = 0; r < rows; r++) {
           for (int c = 0; c < columns; c++) {
               if (grid.get(r).get(c) == FILL) {
@@ -75,14 +83,6 @@ class Solution {
   }
 
   private static boolean isFill(List<List<Integer>> grid, int r, int c) {
-      return r >= 0 && r < grid.size() &&c >= 0 && c < grid.get(0).size() && grid.get(r).get(c) != FILL;
-  }
-
-  private static class Point {
-      int r, c;
-      Point(int r, int c) {
-          this.r = r;
-          this.c = c;
-      }
+      return r >= 0 && r < grid.size() && c >= 0 && c < grid.get(0).size() && grid.get(r).get(c) != FILL;
   }
 }
