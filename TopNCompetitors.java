@@ -14,7 +14,7 @@ class Solution {
   public static void main(String[] args) {
       int numCompetitors = 6;
       int topNCompetitors = 2;
-      String[] competitors = {"newshop", "shopnow","fashionbeats","mymarket","tcellular"};
+      String[] competitors = {"newshop", "shopnow", "afshion", "fashionbeats", "mymarket", "tcellular"};
       int numReviews = 6;
       String[] reviews = {"newshop is providing good services in the city; everyone should use newshop", "best services by newsshop", "fashionbeats has great services int the city","i am proud to have fashionbeats","mymarket has awesome services","Thanks Newshop for the quick delivery."};
       
