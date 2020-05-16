@@ -22,12 +22,12 @@ class Solution {
       Collections.addAll(toys, competitors);
       List<String> quotes = new ArrayList<>();
       Collections.addAll(quotes, reviews);
-      List<String> result = getTopCompetitors(numCompetitors, topNCompetitors, toys, numReviews, quotes);
+      List<String> result = getTopCompetitors(topNCompetitors, toys, quotes);
         
       System.out.println(result);
   }
   
-  public static ArrayList<String> getTopCompetitors(int numToys, int topToys, List<String> toys, int numQuotes, List<String> quotes) {
+  public static ArrayList<String> getTopCompetitors(int topToys, List<String> toys, List<String> quotes) {
         Map<String, Integer> map = new HashMap<>();
         Set<String> keySet = new HashSet<>();
         List<String>[] bucket = new List[quotes.size() + 1];
