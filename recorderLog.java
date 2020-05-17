@@ -1,3 +1,14 @@
+/*
+guaranteed to have a word following an identifier (allows me to use indexOf ' ' freely).
+letter logs need to be ordered lexicographically, so we can use built in compare function when we know we have two.
+number logs need to be sorted naturally, so we just say they're all "equal" to eachother and trust java's built in sort feature to be stable.
+number logs need to be after letter logs, so once we find out they're different, we return one of the other and short-circuit.
+
+Time Complexity: O(nlogn), .
+
+Space Complexity: .
+*/
+
 class Solution {
     public String[] reorderLogFiles(String[] logs) {
         Comparator<String> myCmp = new Comparator<String>() {
