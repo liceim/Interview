@@ -10,7 +10,7 @@ Space Complexity: .
 */
 
 class Solution {
-    public String[] reorderLogFiles(String[] logs) {
+    public List<String> reorderLogFiles(List<String> logs) {
         Comparator<String> myCmp = new Comparator<String>() {
             @Override
             public int compare(String s1, String s2) {
@@ -43,7 +43,7 @@ class Solution {
             
         };
         
-        Arrays.sort(logs, myCmp);
+        Collections.sort(logs, myCmp);
         return logs;
     }
 }
