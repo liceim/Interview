@@ -1,3 +1,7 @@
+/*
+The solution is to maintain a window and keep a count of every character in the window. Whenever the size of the window is equaled to k and only include 1 repetitive, add it to the set.
+Time Complexity is O(N) N is length of the s.
+*/
 public class Main {
     
     public static List<String> kSubstring(String s, int k) {
