@@ -1,3 +1,13 @@
+/*
+I used Union Find to solve this problem, which allowed me to group the associations into a group based on
+their common parent. So each item is essentially marked by a parent. By comparing two items by their parent,
+I can determine if they are in the same group. So first I performed this algorithm on the input sort them into
+groups. The algorithm also did path compression for optimizations, rather than a tree-like structure where
+every time two items where unioned they were appended to the tree. Finally, Iiterated through the vectors to find the largest one, and returned the first
+one by size and then lexicographical order.
+
+Time Complexity: O(NlogN) where N = SUM(a_i) and a_i is the length of items[i].
+*/
 class PairString {
     String first;
     String second;
