@@ -7,7 +7,7 @@ public int bstDistance(int num, List<Integer> values, int node1, int node2) {
     if (num < 2) {
       return -1;
     }
-    TreeNode root = buildBST(values.toArray(), node1, node2);
+    TreeNode root = buildBST(values.toArray(new Integer[values.size()]), node1, node2);
     if (root == null) return -1;
     TreeNode lca = lca(root, node1, node2);
     return getDistance(lca, node1) + getDistance(lca, node2);
@@ -34,7 +34,7 @@ private TreeNode lca(TreeNode root, int node1, int node2) {
     }
 }
 
-private TreeNode buildBST(int[] nums, int node1, int node2) {
+private TreeNode buildBST(Integer[] nums, int node1, int node2) {
     TreeNode root = null;
     boolean found1 = false;
     boolean found2 = false;
