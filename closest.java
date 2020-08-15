@@ -27,7 +27,7 @@ class Solution {
 
 public static List<PairInt> closestLocations(int totalCrates, List<PairInt> allLocations, int truckCapacity) {
         PriorityQueue<PairInt> maxHeap = new PriorityQueue<PairInt>((p1, p2) -> p2.first * p2.first + p2.second * p2.second - p1.first * p1.first - p1.second * p1.second);
-        for (PairInt p : (PairInt[])allLocations.toArray(new PairInt[0])) {
+        for (PairInt p : allLocations.toArray(new PairInt[allLocations.size()])) {
             maxHeap.offer(p);
             if (maxHeap.size() > truckCapacity) {
                 maxHeap.poll();
