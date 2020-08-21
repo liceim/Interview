@@ -1,5 +1,12 @@
 /*
-Time complexity : O(mn)O(mn).
+Here I take a queue with initialied with row=0,col=0 and I am keeping the track of the counts that is steps
+taken which is initialy 0. And also i keep the set of visited coordinats to keep the track which indexes i have
+visited. And the while the queue is there, i take the row, col, count out and loop for all the four directions and
+check if it is in the lot boundary then i check for obstacle and if not visited i add in visited set and append in
+queue and return the count for the steps taken to remove it starting from 1st step. And i check if it is not the
+trench and the index (row,col) is not visited i visit it and add in the queue for further processing. Else I return
+-1 ifit is no possible to get the count
+Time complexity : O(mn).
 */
 public class Main {
     private static int[] dx = {1, -1, 0, 0};
