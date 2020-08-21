@@ -1,8 +1,12 @@
 /*
-maintain a copy of movieDuration and sort it.
-use two pointers from left(biggest ones) + right (smallest ones), if the sum is smaller than d and then larger than the current maximum, then we find a solution.
-update ans with the index, here we have to refer the index to the original movieDuration array.
-Time Complexity : O(NlogN)
+The problem can be simplified into finding pair of movies which durations sum up to a certain value. Given a
+movie with duration x, i can calculate its pair duration y. I need a fast O(1) way to look up y so i used a
+HashMap. However using a HashMap to store duration of movie that i iterate through before result in us
+requiring a O(N) space complexity. The algorithm is iterate through list of movies and for each movie check
+HashMap to see if we already visited a movie that can form a pair. There is also additional checks to maintain
+the movie pair with highest duration.
+
+Time Complexity : O(N) where N is the number of movies. Iiterate through the movie list once
 */
 class PairInt
 {
@@ -39,49 +43,38 @@ public class Main {
         return result;
     }
 
-    private static PairInt get2SumClosest(int flightDuration, int numMovies, List<Integer> movieDuration) {
-        if (flightDuration <= 30 || numMovies == 0) {
-            return new PairInt(-1, -1);
-        }
+    // CLASS BEGINS, THIS CLASS IS REQUIRED
+    public class Solution {
         
-        flightDuration -= 30;
-        Map<Integer, List<Integer>> map = new HashMap<>();
-        for(int i = 0; i<movieDuration.size(); i++) {
-            map.putIfAbsent(movieDuration.get(i), new ArrayList<>());
-            map.get(movieDuration.get(i)).add(i);
-        }
-        
-        Collections.sort(movieDuration); 
-        int l = 0, r = movieDuration.size() - 1;
-        int max = 0;
-        int[] res = new int[]{-1, -1};
-        while(l < r) {
-            int sum = movieDuration.get(l) + movieDuration.get(r);
-            if((sum > max || (sum == max && Math.max(movieDuration.get(l) , movieDuration.get(r)) > Math.max(res[0],  res[1]))) && sum <= flightDuration) {
-                max = sum;
-                res[0] = movieDuration.get(l);
-                res[1] = movieDuration.get(r);
+        // METHOD SIGNATURE BEGINS, THIS METHOD IS REQUIRED
+        PairInt IDsOfmovies(int flightDuration, int numMovies,
+                            ArrayList<Integer> movieDuration)
+        {
+            int durationSum = flightDuration -30;
+            PairInt ans = new PairInt(-1,-1);
+            int ansLongest = Integer.MIN_VALUE;
+            Map<Integer, Integer> durationToIdMap = new HashMap<>();
+
+            for(int i = 0; i < movieDuration.size(); i++){
+                int duration = movieDuration.get(i);
+                int targetDuration = durationSum - duration;
+                int firstMovie = durationToIdMap.getOrDefault(targetDuration, -1);
+
+                if(firstMovie != -1){
+                    // we found match
+                    int longestInThisPair = Math.max(duration, targetDuration);
+                    if(longestInThisPair > ansLongest){
+                        ans = new PairInt(firstMovie, i);
+                        ansLongest = longestInThisPair;
+                    }
+                }
+
+                durationToIdMap.put(movieDuration.get(i), i);
             }
-            if(sum > flightDuration)
-                r--;
-            else
-                l++;
+
+            return ans;
         }
-        //System.out.println(res[0] + " " + res[1]);
-        if(map.get(res[0]) == map.get(res[1])) {
-            res[0] = map.get(res[0]).get(0);
-            res[1] = map.get(res[1]).get(1);
-        }else {
-            res[0] = map.get(res[0]).get(0);
-            res[1] = map.get(res[1]).get(0);
-        }
-        
-        if (res[0] > res[1]) {
-            int tmp = res[0];
-            res[0] = res[1];
-            res[1] = tmp;
-        }
-        return new PairInt(res[0], res[1]);
+    // METHOD SIGNATURE ENDS
     }
     
     public static void main(String[] args) {
