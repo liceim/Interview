@@ -6,7 +6,7 @@ check if it is in the lot boundary then i check for obstacle and if not visited 
 queue and return the count for the steps taken to remove it starting from 1st step. And i check if it is not the
 trench and the index (row,col) is not visited i visit it and add in the queue for further processing. Else I return
 -1 ifit is no possible to get the count
-Time complexity : O(mn).
+Time complexity : O(m*n) where m is number of rows and n is number of columns.
 */
 public class Main {
     private static int[] dx = {1, -1, 0, 0};
