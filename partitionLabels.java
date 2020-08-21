@@ -42,6 +42,12 @@ Explanation:
 Because ‘a’ appears more than once, everything between the first and last appearance of ‘a’ must be in the same list.
 */
 
+/*
+1.traverse the string record the last index of each char.
+2.using pointer to record end of the current sub string.
+Time Complexity: O(N), where NN is the length of SS.
+Space Complexity: O(1) to keep data structure last of not more than 26 characters.
+*/
 class Solution {
     public List<Integer> partitionLabels(String S) {
         if (S == null || S.length() == 0) {
