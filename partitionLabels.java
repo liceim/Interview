@@ -49,21 +49,21 @@ Time Complexity: O(N), where NN is the length of SS.
 Space Complexity: O(1) to keep data structure last of not more than 26 characters.
 */
 class Solution {
-    public List<Integer> partitionLabels(String S) {
+    public List<Integer> lengthEachScene(List<Character> inputList) {
         if (S == null || S.length() == 0) {
             return null;
         }
         
         int[] map = new int[26];
-        for (int i = 0; i < S.length(); ++i) {
-            map[S.charAt(i) - 'a'] = i;
+        for (int i = 0; i < inputList.size(); ++i) {
+            map[inputList.get(i) - 'a'] = i;
         }
         
         List<Integer> res = new ArrayList<>();
         int last = 0;
         int start = 0;
-        for (int i = 0; i < S.length(); ++i) {
-            last = Math.max(last, map[S.charAt(i)-'a']);
+        for (int i = 0; i < inputList.size(); ++i) {
+            last = Math.max(last, map[inputList.get(i) - 'a']);
             if (last == i) {
                 res.add(last - start + 1);
                 start = last + 1;
