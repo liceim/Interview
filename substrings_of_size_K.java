@@ -1,44 +1,51 @@
 /*
-The solution is to maintain a window and keep a count of every character in the window. Whenever the size of the window is equaled to k and only include 1 repetitive, add it to the set.
+I used a sliding window approach to look at substrings of length K in every iteration. To accomplish this, I
+created a counts array of 26 (lowercase alphabets as inputs only) which will keep track of count of a character
+in current window. If a character is seen for the first time, the count array will have it's value as 0, we
+increment the distinct character count to track number of distinct characters. If the length matches and the
+number of distinct characters is equal to K-1, then add it to the result. Whenever the window length is
+beyond K, we shrink the window forward. When we shrink the window, we will decrement count of the
+character in counts array. When we reach 0, then we decrement the distinct character count;
+Whatis the run time complexity of your solution for this code question.
+Runtime: O(size(inputString)) Memory: O(26) = O(1) ignoring the result list size
 Time Complexity is O(N) N is length of the s.
 */
 public class Main {
     
-    public static List<String> kSubstring(String s, int k) {
-        if (s == null || s.length() < k) {
-            return new ArrayList<String>();
-        }
+    public List<String> subStringsLessKDist(String inputString, int num)
+    {
+
+        if(inputString == null || inputString.length() == 0 || num > inputString.length()) return new ArrayList();
+
+        // Using set to remove duplicates in the result or else only 8 of 16test cases are passing
+        Set<String> set = new HashSet<>();
+        int start = 0;
+
+        int[] count = new int[26];
+
+        int uniqueCount = 0;
+
+        for(int end = 0; end < inputString.length(); end++) {
+            if(count[inputString.charAt(end) - 'a'] == 0) {
+                uniqueCount++;
+            }
+            count[inputString.charAt(end)-'a']++;
+
+            while(end - start + 1 > num || uniqueCount > num-1) {
+                count[inputString.charAt(start)-'a']--;
         
-        List<String> res = new ArrayList<>();
-        Map<Character, Integer> map = new HashMap<>();
-        Set<Character> duplicate = new HashSet<>();
-        for (int start = 0, end = 0; end < s.length(); ++end) {
-            char c = s.charAt(end);
-            map.put(c, map.getOrDefault(c, 0) + 1);
-            if (map.get(c) > 1) {
-                duplicate.add(c);
+                if(count[inputString.charAt(start) - 'a'] == 0) uniqueCount--
+
+                start++;
             }
-            
-            if (end - start + 1 < k) {
-                continue;
+
+            // if it meets our requirement, add to the result
+            if(end - start + 1 == num && uniqueCount == num - 1) {
+                set.add(inputString.substring(start, end + 1));
             }
-            
-            if (duplicate.size() == 1 && map.get(duplicate.iterator().next()) == 2) {
-                res.add(s.substring(start, end + 1));
-            }
-            
-            c = s.charAt(start);
-            map.put(c, map.get(c) - 1);
-            if (map.get(c) <= 1) {
-                duplicate.remove(c);
-            } 
-            start++;
         }
-        
-        return res;
-    }
-    
-    public static void main(String[] args) {
-        System.out.println(kSubstring("qqawadq", 4));
+
+        return new ArrayList(set);
     }
 }
+
